@@ -8,9 +8,8 @@ public class Member {
     private String email;
     private String name;
 
-    public Member(Long id, String email, String name){
+    public Member( String email, String name){
         this.email = email;
-        this.id = id;
         this.name = name;
     }
 
