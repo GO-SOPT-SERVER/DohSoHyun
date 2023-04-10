@@ -17,6 +17,13 @@ public class Member {
         this.id = id;
     }
 
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
     @Override
     public String toString(){
         return "id: " + this.id + "\n" +
