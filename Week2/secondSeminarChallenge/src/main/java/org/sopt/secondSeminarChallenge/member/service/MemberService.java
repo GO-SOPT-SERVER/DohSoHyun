@@ -35,16 +35,13 @@ public class MemberService {
     public void update(Long id, MemberSaveRequestDto requestDto){
         String email = requestDto.getEmail();
         String name = requestDto.getName();
-        for(Member memberIter : memberList){
-            if(memberIter.getId()== id){
-                memberIter.setEmail(email);
-                memberIter.setName(name);
-            }
-        }
+        Member member = memberList.get(id.intValue() - 1);
+        member.setName(name);
+        member.setEmail(email);
     }
 
     public void delete(Long id){
-        Member member = memberList.remove((int)(id - 1));
+        Member member = memberList.remove(id.intValue() - 1);
         System.out.println("email: " + member.getEmail() + "유저가 삭제되었습니다.");
     }
 }

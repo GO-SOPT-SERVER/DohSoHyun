@@ -28,6 +28,6 @@ public class Member {
     public String toString(){
         return "id: " + this.id + "\n" +
                 "email: "+ this.email + "\n" +
-                "name" + this.name + "\n";
+                "name: " + this.name + "\n";
     }
 }
