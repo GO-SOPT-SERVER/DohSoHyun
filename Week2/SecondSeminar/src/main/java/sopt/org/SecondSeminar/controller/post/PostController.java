@@ -6,6 +6,8 @@ import sopt.org.SecondSeminar.controller.post.dto.request.PostSaveRequestDto;
 import sopt.org.SecondSeminar.domain.post.Post;
 import sopt.org.SecondSeminar.service.PostService;
 
+import java.util.List;
+
 import static sopt.org.SecondSeminar.SecondSeminarApplication.postList;
 
 @RestController
@@ -31,7 +33,7 @@ public class PostController {
     }
 
     @GetMapping("/post/search")
-    public String search(@RequestParam final String name){
+    public List<Post> search(@RequestParam final String name){
         return postService.searchByName(name);
     }
 }

@@ -1,11 +1,11 @@
 package sopt.org.SecondSeminar.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import sopt.org.SecondSeminar.controller.post.dto.request.PostSaveRequestDto;
 import sopt.org.SecondSeminar.domain.post.Post;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import java.io.IOException;
 
 import static sopt.org.SecondSeminar.SecondSeminarApplication.postList;
 
@@ -24,18 +24,10 @@ public class PostService {
         return newPost.getId();
     }
 
-    public String searchByName(String name){
-        Post post = new Post("","");
-        for(int i = 0; i < postList.size(); i++){
-            Post postIn = postList.get(i);
-
-            if(postIn.getName().equals(name)){
-                post = postIn;
-                String content = post.getContents();
-                String postName = post.getName();
-                return "제목: " + postName + " 내용: "+ content;
-            }
-        }
-        return "해당 게시물이 없습니다.";
+    public List<Post> searchByName(String name){
+        List<Post> searchedPosts = postList.stream()
+                .filter(post -> post.getName().equals(name))
+                .collect(Collectors.toList());
+        return searchedPosts;
     }
 }
