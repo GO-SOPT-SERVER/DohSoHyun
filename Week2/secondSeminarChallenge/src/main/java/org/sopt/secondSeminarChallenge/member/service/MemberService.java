@@ -21,12 +21,9 @@ public class MemberService {
     }
 
     public String searchByEmail(String email){
-        Member member = new Member("", "");
-
         for(Member memberIter : memberList){
             if(memberIter.getEmail().equals(email)){
-                member = memberIter;
-                return "email: " + member.getEmail() +"님의 이름은 " +member.getName() + "입니다.";
+                return "email: " + memberIter.getEmail() +"님의 이름은 " +memberIter.getName() + "입니다.";
             }
         }
         return "해당 사용자는 없습니다.";
