@@ -15,7 +15,7 @@ public class ControllerExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ApiResponseDto handleMethodArgumentNotValidExeption(final MethodArgumentNotValidException e){
+    protected ApiResponseDto handleMethodArgumentNotValidException(final MethodArgumentNotValidException e){
         return ApiResponseDto.error(ErrorStatus.VALIDATION_REQUEST_MISSING_EXCEPTION);
     }
 }
