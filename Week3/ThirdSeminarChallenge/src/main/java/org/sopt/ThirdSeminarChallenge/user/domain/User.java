@@ -1,4 +1,4 @@
-package org.sopt.ThirdSeminarChallenge.user;
+package org.sopt.ThirdSeminarChallenge.user.domain;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +15,10 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
 

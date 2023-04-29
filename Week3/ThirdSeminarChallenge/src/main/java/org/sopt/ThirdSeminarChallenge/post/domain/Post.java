@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.sopt.ThirdSeminarChallenge.user.User;
+import org.sopt.ThirdSeminarChallenge.user.domain.User;
 
 import javax.persistence.*;
 
@@ -25,7 +25,7 @@ public class Post {
     private String contents;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     @Builder

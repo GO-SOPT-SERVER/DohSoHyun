@@ -4,15 +4,14 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserRequestDto {
-    @NotNull
+public class UserResponseDto {
+    private Long id;
+    private String name;
     private String email;
 
-    @NotBlank
-    private String name;
+    public static UserResponseDto of(Long id, String name, String email){
+        return new UserResponseDto(id, name, email);
+    }
 }

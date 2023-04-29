@@ -5,17 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.sopt.ThirdSeminarChallenge.user.domain.User;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class PostRequestDto {
-    @NotNull
+public class PostResponseDto {
+    private Long id;
     private String title;
-
-    @NotNull
-    private String contents;
-
-    @NotNull
-    private String name;
+    private String content;
+    private User user;
+    public static PostResponseDto of(Long id, String title, String content, User user) {
+        return new PostResponseDto(id, title, content, user);
+    }
 }
