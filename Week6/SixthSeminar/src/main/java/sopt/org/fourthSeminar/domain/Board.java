@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,6 +21,7 @@ public class Board extends AuditingTimeEntity {
 
     @Column(nullable = false)
     private String title;
+
 
     @Column(nullable = false)
     private String content;

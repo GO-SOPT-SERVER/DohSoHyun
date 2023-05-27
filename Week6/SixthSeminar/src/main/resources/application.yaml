@@ -1,3 +1,14 @@
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIA4V4INCEUZALSFNO7
+      secretKey: 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
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: sopt32-sixth
+    stack:
+      auto: false
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,3 +32,16 @@ logging:
             sql: trace
 jwt:
   secret: fdfdsfjsalfjas5657ig6fod7sigf65i7gtdbhghjlkjiuhkgyufj
+springdoc:
+  packages-to-scan: sopt.org.fourthSeminar
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: true
+    cache:
+      disabled: true
