@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fourthSeminar.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fourthSeminar.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fourthSeminar.iml" filepath="$PROJECT_DIR$/.idea/modules/fourthSeminar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fourthSeminar.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fourthSeminar.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sopt.org.fourthSeminar.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sopt.org.fourthSeminar.main.iml" />
     </modules>
   </component>
 </project>
