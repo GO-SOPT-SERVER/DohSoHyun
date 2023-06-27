@@ -1,0 +1,55 @@
+package sopt.org.fourthSeminar.controller;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import sopt.org.fourthSeminar.common.dto.ApiResponse;
+import sopt.org.fourthSeminar.config.jwt.JwtService;
+import sopt.org.fourthSeminar.controller.dto.request.AccessTokenRequestDto;
+import sopt.org.fourthSeminar.controller.dto.request.RefreshTokenRequestDto;
+import sopt.org.fourthSeminar.controller.dto.request.UserLoginRequestDto;
+import sopt.org.fourthSeminar.controller.dto.request.UserRequestDto;
+import sopt.org.fourthSeminar.controller.dto.response.NewAccessTokenResponseDto;
+import sopt.org.fourthSeminar.controller.dto.response.UserLoginResponseDto;
+import sopt.org.fourthSeminar.controller.dto.response.UserResponseDto;
+import sopt.org.fourthSeminar.exception.Success;
+import sopt.org.fourthSeminar.service.RefreshTokenService;
+import sopt.org.fourthSeminar.service.UserService;
+
+import javax.validation.Valid;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/user")
+@Tag(name = "User", description = "유저 API Document")
+public class UserController {
+
+    private final UserService userService;
+    private final JwtService jwtService;
+    private final RefreshTokenService refreshTokenService;
+    @PostMapping("/signup")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "유저 로그인 API", description = "유저가 서버에 등록됩니다.")
+    public ApiResponse<UserResponseDto> create(@RequestBody @Valid final UserRequestDto request) {
+        return ApiResponse.success(Success.SIGNUP_SUCCESS, userService.create(request));
+    }
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "유저 로그인 API", description = "유저가 서버에 로그인을 요청합니다.")
+    public ApiResponse<UserLoginResponseDto> login(@RequestBody @Valid final UserLoginRequestDto request) {
+        final Long userId = userService.login(request);
+        final String accessToken = jwtService.issuedAccessToken(String.valueOf(userId));
+        final String refreshToken = jwtService.issueRefreshToken(String.valueOf(userId));
+        refreshTokenService.saveRefreshToken(String.valueOf(userId), refreshToken);
+        return ApiResponse.success(Success.LOGIN_SUCCESS, UserLoginResponseDto.of(userId, accessToken, refreshToken));
+    }
+    //access token
+    @PostMapping("/token_refresh")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<NewAccessTokenResponseDto> autologin(@RequestBody final AccessTokenRequestDto requestDto){
+        return ApiResponse.success(Success.LOGIN_SUCCESS, userService.auto_login(requestDto));
+    }
+}
