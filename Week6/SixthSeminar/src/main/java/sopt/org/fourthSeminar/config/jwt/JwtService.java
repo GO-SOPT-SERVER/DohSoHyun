@@ -27,7 +27,8 @@ public class JwtService {
     }
 
     // JWT 토큰 발급
-    public String issuedAccessToken(String userId) {
+    public String issuedToken(String userId) {
+
         final Date now = new Date();
 
         // 클레임 생성
@@ -45,6 +46,7 @@ public class JwtService {
                 .signWith(getSigningKey())
                 .compact();
     }
+
 
     public String issueRefreshToken(String userId) {
         final Date now = new Date();

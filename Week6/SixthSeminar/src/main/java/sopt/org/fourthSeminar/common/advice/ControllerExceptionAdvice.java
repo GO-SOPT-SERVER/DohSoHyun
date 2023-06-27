@@ -13,7 +13,9 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import sopt.org.fourthSeminar.common.dto.ApiResponse;
 import sopt.org.fourthSeminar.exception.Error;
 import sopt.org.fourthSeminar.exception.model.SoptException;
+
 import sopt.org.fourthSeminar.exception.model.UnauthorizedException;
+
 
 import javax.validation.UnexpectedTypeException;
 import java.util.Objects;
@@ -59,6 +61,7 @@ public class ControllerExceptionAdvice {
 //        return ApiResponse.error(Error.INTERNAL_SERVER_ERROR);
 //    }
 
+
     /*
      Unauthorized Exception
      */
@@ -67,6 +70,7 @@ public class ControllerExceptionAdvice {
         return ResponseEntity.status(e.getHttpStatus())
                 .body(ApiResponse.error(e.getError(), e.getMessage()));
     }
+
     /**
      * Sopt custom error
      */
